@@ -1,0 +1,17 @@
+com/bank/analysis/solucion/model/Transaction.class
+com/bank/analysis/solucion/model/TransactionType.class
+com/bank/analysis/solucion/service/FilterService.class
+com/bank/analysis/solucion/service/SearchService.class
+com/bank/analysis/solucion/service/SortService$SortResult.class
+com/bank/analysis/solucion/model/SearchResult.class
+com/bank/analysis/solucion/service/SortServiceImpl.class
+com/bank/analysis/solucion/service/SortService.class
+com/bank/analysis/solucion/config/AppConfig.class
+com/bank/analysis/solucion/config/TransactionDataGenerator.class
+com/bank/analysis/solucion/service/FilterServiceImpl.class
+com/bank/analysis/solucion/service/SearchServiceImpl.class
+com/bank/analysis/solucion/MainRefactorizado.class
+com/bank/analysis/inicial/Transaction.class
+com/bank/analysis/inicial/Main.class
+com/bank/analysis/inicial/TransactionProcessor.class
+com/bank/analysis/solucion/report/PerformanceReport.class

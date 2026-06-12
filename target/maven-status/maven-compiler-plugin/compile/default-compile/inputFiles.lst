@@ -1,0 +1,16 @@
+/Users/hchanampe/workspaces/programacion-III/tp4/tp4-laboratorio/src/main/java/com/bank/analysis/inicial/Main.java
+/Users/hchanampe/workspaces/programacion-III/tp4/tp4-laboratorio/src/main/java/com/bank/analysis/inicial/Transaction.java
+/Users/hchanampe/workspaces/programacion-III/tp4/tp4-laboratorio/src/main/java/com/bank/analysis/inicial/TransactionProcessor.java
+/Users/hchanampe/workspaces/programacion-III/tp4/tp4-laboratorio/src/main/java/com/bank/analysis/solucion/MainRefactorizado.java
+/Users/hchanampe/workspaces/programacion-III/tp4/tp4-laboratorio/src/main/java/com/bank/analysis/solucion/config/AppConfig.java
+/Users/hchanampe/workspaces/programacion-III/tp4/tp4-laboratorio/src/main/java/com/bank/analysis/solucion/config/TransactionDataGenerator.java
+/Users/hchanampe/workspaces/programacion-III/tp4/tp4-laboratorio/src/main/java/com/bank/analysis/solucion/model/SearchResult.java
+/Users/hchanampe/workspaces/programacion-III/tp4/tp4-laboratorio/src/main/java/com/bank/analysis/solucion/model/Transaction.java
+/Users/hchanampe/workspaces/programacion-III/tp4/tp4-laboratorio/src/main/java/com/bank/analysis/solucion/model/TransactionType.java
+/Users/hchanampe/workspaces/programacion-III/tp4/tp4-laboratorio/src/main/java/com/bank/analysis/solucion/report/PerformanceReport.java
+/Users/hchanampe/workspaces/programacion-III/tp4/tp4-laboratorio/src/main/java/com/bank/analysis/solucion/service/FilterService.java
+/Users/hchanampe/workspaces/programacion-III/tp4/tp4-laboratorio/src/main/java/com/bank/analysis/solucion/service/FilterServiceImpl.java
+/Users/hchanampe/workspaces/programacion-III/tp4/tp4-laboratorio/src/main/java/com/bank/analysis/solucion/service/SearchService.java
+/Users/hchanampe/workspaces/programacion-III/tp4/tp4-laboratorio/src/main/java/com/bank/analysis/solucion/service/SearchServiceImpl.java
+/Users/hchanampe/workspaces/programacion-III/tp4/tp4-laboratorio/src/main/java/com/bank/analysis/solucion/service/SortService.java
+/Users/hchanampe/workspaces/programacion-III/tp4/tp4-laboratorio/src/main/java/com/bank/analysis/solucion/service/SortServiceImpl.java
