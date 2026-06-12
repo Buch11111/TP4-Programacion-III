@@ -2,22 +2,6 @@ package com.bank.analysis.inicial;
 
 import java.util.Objects;
 
-/**
- * Representa una transacción bancaria.
- * <p>
- * <b>⚠ CÓDIGO SUCIO - CON MALAS PRÁCTICAS INTENCIONALES:</b>
- * Esta clase viola intencionalmente principios de encapsulamiento y buenas
- * prácticas
- * para que los estudiantes identifiquen los problemas y los corrijan en la
- * versión refactorizada.
- * <ul>
- * <li>Todos los campos son públicos (sin encapsulamiento)</li>
- * <li>Usa {@code String} para el tipo en lugar de un {@code enum}</li>
- * <li>Campos no finales (mutables sin control)</li>
- * <li>Nombres poco descriptivos (mnt, fec, desc)</li>
- * <li>La fecha se almacena como String en lugar de {@code LocalDate}</li>
- * </ul>
- */
 public class Transaction {
 
     /** Identificador único de la transacción */

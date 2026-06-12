@@ -2,28 +2,11 @@ package com.bank.analysis.inicial;
 
 import java.util.List;
 
-/**
- * Clase principal del paquete "inicial".
- * <p>
- * <b>⚠ CÓDIGO PROCEDURAL - VIOLACIONES INTENCIONALES:</b>
- * <ul>
- * <li>Usa {@code new} directamente para crear dependencias (sin DI)</li>
- * <li>Toda la lógica está en el {@code main} (sin separación de
- * responsabilidades)</li>
- * <li>Usa {@code System.out.println} directamente (sin logging)</li>
- * <li>Sin manejo de excepciones</li>
- * </ul>
- * <p>
- * Este código representa el "antes" de la refactorización: sin Spring,
- * sin inyección de dependencias, sin separación de capas.
- */
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println("==========================================");
+
         System.out.println("  SISTEMA DE ANÁLISIS DE TRANSACCIONES");
-        System.out.println("  VERSIÓN INICIAL (CÓDIGO SUCIO)");
-        System.out.println("==========================================\n");
 
         // Crear el procesador y generar datos
         TransactionProcessor procesador = new TransactionProcessor();
@@ -90,9 +73,12 @@ public class Main {
 
     private static void generarReporteDesempeno() {
         System.out.println("=== REPORTE DE DESEMPEÑO ===");
-        System.out.println("+------------------+---------------------+---------------------+------------------+------------------+");
-        System.out.println("| Tamaño entrada   | Búsqueda Lineal (ns)| Búsqueda Binaria(ns)| Bubble Sort (ns) | Built-in Sort(ns)|");
-        System.out.println("+------------------+---------------------+---------------------+------------------+------------------+");
+        System.out.println(
+                "+------------------+---------------------+---------------------+------------------+------------------+");
+        System.out.println(
+                "| Tamaño entrada   | Búsqueda Lineal (ns)| Búsqueda Binaria(ns)| Bubble Sort (ns) | Built-in Sort(ns)|");
+        System.out.println(
+                "+------------------+---------------------+---------------------+------------------+------------------+");
 
         int[] tamanos = { 100, 1000, 10000, 100000 };
 
@@ -117,7 +103,8 @@ public class Main {
             tiempoLineal = fin - inicio;
 
             // 2. Búsqueda Binaria (Peor caso)
-            // Primero ordenamos la lista internamente por ID para que la búsqueda binaria funcione
+            // Primero ordenamos la lista internamente por ID para que la búsqueda binaria
+            // funcione
             processor.getTransacciones().sort((t1, t2) -> Long.compare(t1.id, t2.id));
             inicio = System.nanoTime();
             processor.buscarPorIdBinario(idInexistente);
@@ -132,7 +119,8 @@ public class Main {
                 fin = System.nanoTime();
                 tiempoBubble = fin - inicio;
             } else {
-                // Si tarda demasiado en tu PC, descomentar la siguiente línea y comentar la ejecución de ordenarManual
+                // Si tarda demasiado en tu PC, descomentar la siguiente línea y comentar la
+                // ejecución de ordenarManual
                 // tiempoBubble = -1;
                 inicio = System.nanoTime();
                 processor.ordenarManual(true);
@@ -151,7 +139,8 @@ public class Main {
             System.out.printf("| %-16d | %,19d | %,19d | %16s | %,16d |%n",
                     n, tiempoLineal, tiempoBinaria, bubbleStr, tiempoBuiltIn);
         }
-        System.out.println("+------------------+---------------------+---------------------+------------------+------------------+");
+        System.out.println(
+                "+------------------+---------------------+---------------------+------------------+------------------+");
 
         System.out.println("\n=== JUSTIFICACIÓN DE LOS RESULTADOS ===");
         System.out.println("1. Búsqueda Lineal (O(n)):");
@@ -159,14 +148,16 @@ public class Main {
         System.out.println("   tarda más o menos 10 veces más. Se nota en los nanosegundos cómo sube de forma lineal.");
         System.out.println("2. Búsqueda Binaria (O(log n)):");
         System.out.println("   Acá como va partiendo la lista a la mitad cada vez, es rapidísimo.");
-        System.out.println("   Incluso con 100 mil elementos, hace re pocas comparaciones y los tiempos casi ni se mueven.");
+        System.out.println(
+                "   Incluso con 100 mil elementos, hace re pocas comparaciones y los tiempos casi ni se mueven.");
         System.out.println("3. Bubble Sort (O(n²)):");
         System.out.println("   Pésimo para listas grandes porque tiene dos for anidados.");
         System.out.println("   Cuando pasamos a 10.000 se nota que ya le cuesta, y con 100.000 directamente se queda");
         System.out.println("   pensando banda de tiempo. Se ve re claro el crecimiento cuadrático.");
         System.out.println("4. Built-in Sort / TimSort (O(n log n)):");
         System.out.println("   Es el sort que ya viene hecho en Java. Al ser O(n log n), escala súper bien.");
-        System.out.println("   Mientras que el Bubble Sort se re cuelga con 100k, este los ordena en un par de milisegundos.");
+        System.out.println(
+                "   Mientras que el Bubble Sort se re cuelga con 100k, este los ordena en un par de milisegundos.");
         System.out.println("=======================================");
     }
 }

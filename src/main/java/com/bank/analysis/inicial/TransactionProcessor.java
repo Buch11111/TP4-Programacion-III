@@ -6,24 +6,6 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
-/**
- * <b>⚠ GOD CLASS - CÓDIGO SUCIO INTENCIONAL:</b>
- * Esta clase concentra demasiadas responsabilidades: generación de datos,
- * almacenamiento, búsqueda, ordenamiento, filtrado e impresión.
- * <p>
- * Violaciones de SOLID y buenas prácticas presentes:
- * <ul>
- * <li><b>Single Responsibility:</b> La clase hace búsqueda, ordenamiento y
- * filtrado</li>
- * <li><b>Open/Closed:</b> Los métodos {@code buscarPorTipo} y
- * {@code filtrarAvanzado} usan cadenas de if-else que requieren modificar la
- * clase para agregar nuevos tipos</li>
- * <li><b>Alto acoplamiento:</b> Todo el código depende de la implementación
- * concreta</li>
- * <li><b>Baja cohesión:</b> Métodos que no están relacionados conviven en la
- * misma clase</li>
- * </ul>
- */
 public class TransactionProcessor {
 
     /** Lista interna de transacciones (almacenamiento + lógica todo junto) */

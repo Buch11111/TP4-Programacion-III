@@ -16,30 +16,6 @@ import com.bank.analysis.solucion.service.SearchService;
 import com.bank.analysis.solucion.service.SortService;
 import com.bank.analysis.solucion.service.SortService.SortResult;
 
-/**
- * Servicio que genera reportes de rendimiento comparando algoritmos de
- * búsqueda y ordenamiento con diferentes tamaños de datos.
- * <p>
- * <b>Objetivo educativo:</b> Demostrar empíricamente la diferencia entre
- * complejidades algorítmicas (O(n) vs O(log n) vs O(n²) vs O(n log n))
- * ejecutando los algoritmos con conjuntos de datos de tamaños crecientes.
- * <p>
- * El reporte incluye una tabla comparativa con tiempos de ejecución para
- * n = 100, 1000, 10000, 100000 y la complejidad Big O teórica de cada
- * algoritmo.
- * <p>
- * <b>Buenas prácticas demostradas:</b>
- * <ul>
- * <li>Inyección de dependencias por constructor</li>
- * <li>Separación de responsabilidades (solo genera reportes, no implementa
- * algoritmos)</li>
- * <li>Fase de warm-up para la JVM antes de medir</li>
- * </ul>
- * <p>
- * <b>Nota:</b> Este bean es auto-detectado mediante {@code @Service} por
- * component scan de Spring Boot. No requiere definición explícita en
- * {@code AppConfig}.
- */
 @Service
 public class PerformanceReport {
 
