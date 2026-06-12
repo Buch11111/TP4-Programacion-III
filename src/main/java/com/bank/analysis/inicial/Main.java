@@ -83,5 +83,90 @@ public class Main {
         // --- Conteo por tipo ---
         procesador.contarPorTipo();
         System.out.println();
+
+        // --- Reporte de Desempeño ---
+        generarReporteDesempeno();
+    }
+
+    private static void generarReporteDesempeno() {
+        System.out.println("=== REPORTE DE DESEMPEÑO ===");
+        System.out.println("+------------------+---------------------+---------------------+------------------+------------------+");
+        System.out.println("| Tamaño entrada   | Búsqueda Lineal (ns)| Búsqueda Binaria(ns)| Bubble Sort (ns) | Built-in Sort(ns)|");
+        System.out.println("+------------------+---------------------+---------------------+------------------+------------------+");
+
+        int[] tamanos = { 100, 1000, 10000, 100000 };
+
+        for (int n : tamanos) {
+            TransactionProcessor processor = new TransactionProcessor();
+            // Limpiar los hardcodeados y generar exactamente 'n'
+            processor.getTransacciones().clear();
+            processor.generarTransacciones(n);
+
+            // Warm-up de la JVM (ejecutar una vez sin medir para que JIT compile)
+            processor.ordenarBuiltIn(true);
+            processor.buscarPorId(-1);
+
+            long tiempoLineal = 0, tiempoBinaria = 0, tiempoBubble = 0, tiempoBuiltIn = 0;
+            long inicio, fin;
+            long idInexistente = 999999999L; // Peor caso para búsquedas: no existe
+
+            // 1. Búsqueda Lineal (Peor caso)
+            inicio = System.nanoTime();
+            processor.buscarPorId(idInexistente);
+            fin = System.nanoTime();
+            tiempoLineal = fin - inicio;
+
+            // 2. Búsqueda Binaria (Peor caso)
+            // Primero ordenamos la lista internamente por ID para que la búsqueda binaria funcione
+            processor.getTransacciones().sort((t1, t2) -> Long.compare(t1.id, t2.id));
+            inicio = System.nanoTime();
+            processor.buscarPorIdBinario(idInexistente);
+            fin = System.nanoTime();
+            tiempoBinaria = fin - inicio;
+
+            // 3. Bubble Sort
+            // Para N=100,000 puede tardar bastante, pero lo ejecutamos para medir.
+            if (n <= 10000) {
+                inicio = System.nanoTime();
+                processor.ordenarManual(true);
+                fin = System.nanoTime();
+                tiempoBubble = fin - inicio;
+            } else {
+                // Si tarda demasiado en tu PC, descomentar la siguiente línea y comentar la ejecución de ordenarManual
+                // tiempoBubble = -1;
+                inicio = System.nanoTime();
+                processor.ordenarManual(true);
+                fin = System.nanoTime();
+                tiempoBubble = fin - inicio;
+            }
+
+            // 4. Built-in Sort
+            inicio = System.nanoTime();
+            processor.ordenarBuiltIn(true);
+            fin = System.nanoTime();
+            tiempoBuiltIn = fin - inicio;
+
+            // Imprimir fila
+            String bubbleStr = tiempoBubble == -1 ? "N/A" : String.format("%,14d", tiempoBubble);
+            System.out.printf("| %-16d | %,19d | %,19d | %16s | %,16d |%n",
+                    n, tiempoLineal, tiempoBinaria, bubbleStr, tiempoBuiltIn);
+        }
+        System.out.println("+------------------+---------------------+---------------------+------------------+------------------+");
+
+        System.out.println("\n=== JUSTIFICACIÓN DE LOS RESULTADOS ===");
+        System.out.println("1. Búsqueda Lineal (O(n)):");
+        System.out.println("   Tiene que revisar uno por uno, así que si la lista es 10 veces más grande,");
+        System.out.println("   tarda más o menos 10 veces más. Se nota en los nanosegundos cómo sube de forma lineal.");
+        System.out.println("2. Búsqueda Binaria (O(log n)):");
+        System.out.println("   Acá como va partiendo la lista a la mitad cada vez, es rapidísimo.");
+        System.out.println("   Incluso con 100 mil elementos, hace re pocas comparaciones y los tiempos casi ni se mueven.");
+        System.out.println("3. Bubble Sort (O(n²)):");
+        System.out.println("   Pésimo para listas grandes porque tiene dos for anidados.");
+        System.out.println("   Cuando pasamos a 10.000 se nota que ya le cuesta, y con 100.000 directamente se queda");
+        System.out.println("   pensando banda de tiempo. Se ve re claro el crecimiento cuadrático.");
+        System.out.println("4. Built-in Sort / TimSort (O(n log n)):");
+        System.out.println("   Es el sort que ya viene hecho en Java. Al ser O(n log n), escala súper bien.");
+        System.out.println("   Mientras que el Bubble Sort se re cuelga con 100k, este los ordena en un par de milisegundos.");
+        System.out.println("=======================================");
     }
 }

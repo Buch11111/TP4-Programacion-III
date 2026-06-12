@@ -14,6 +14,17 @@ fuimos corrigiendo en el trabajo, así queda claro qué era lo que estaba mal al
    - Hicimos la **búsqueda normal (lineal)** recorriendo el array uno por uno.
    - Hicimos el **ordenamiento Burbuja (Bubble Sort)** comparando los valores de a dos e intercambiándolos, y también agregamos la forma rápida usando el sort que ya trae Java por defecto, para que en las pruebas se vea la diferencia de tiempo (el burbuja es re lento con muchos datos).
 
+   Acá dejamos la tablita con los tiempos posta que nos tiró el programa cuando lo corrimos (medido en nanosegundos):
+
+   | Cantidad de datos | Búsqueda Lineal | Búsqueda Binaria | Burbuja (Bubble Sort) | Sort de Java (TimSort) |
+   | :---------------- | :-------------- | :--------------- | :-------------------- | :--------------------- |
+   | **100**           | 4.400 ns        | 6.300 ns         | 831.300 ns            | 57.900 ns              |
+   | **1.000**         | 39.500 ns       | 2.600 ns         | 13.752.300 ns         | 568.700 ns             |
+   | **10.000**        | 808.900 ns      | 5.000 ns         | 398.511.900 ns        | 2.805.700 ns           |
+   | **100.000**       | 2.118.200 ns    | 6.000 ns         | ~59.000.000.000 ns    | 31.195.800 ns          |
+
+   el burbuja con 100.000 datos tardó literal como un minuto, escala pésimo porque es O(n²)
+
 2. **Dividimos el código (la refactorización buena):**
    - Rompimos el mamotreto de `TransactionProcessor` y creamos servicios separados: uno para buscar (`SearchService`), otro para ordenar (`SortService`) y otro para filtrar (`FilterService`). Ahora cada uno hace lo suyo y no molesta al resto.
    - En vez de usar strings sueltos como `"DEPOSITO"`, metimos un `Enum` (`TransactionType`) para que quede todo estandarizado y el código no se rompa por escribir mal una letra.
